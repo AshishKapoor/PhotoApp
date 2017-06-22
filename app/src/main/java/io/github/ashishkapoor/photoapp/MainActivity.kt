@@ -1,5 +1,6 @@
 package io.github.ashishkapoor.photoapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -55,7 +56,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-
+        val intent = Intent(this, DetailActivity:: class.java)
+        val holder = v?.tag as MainAdapter.PhotoViewHolder
+        intent.putExtra(DetailActivity.PHOTO,
+                mainAdapter?.getPhoto(holder.adapterPosition))
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
